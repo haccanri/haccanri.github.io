@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Qing's Blog</title>
-  <meta name="description" content="A website for sharing experience.
-">
+  <title>Markdown, Pandoc and Jekyll</title>
+  <meta name="description" content="Markdown参考资料  GFM(GitHub Flavored Markdown)          https://help.github.com/articles/github-flavored-markdown/      https://help.github.com/articles/markdow...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://haccanri.github.io/">
+  <link rel="canonical" href="http://haccanri.github.io/learning/2015/03/31/markdown_pandoc_jeklly.html">
   <link rel="alternate" type="application/rss+xml" title="Qing's Blog" href="http://haccanri.github.io/feed.xml" />
 </head>
 
@@ -55,39 +54,66 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <div class="post">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title">Markdown, Pandoc and Jekyll</h1>
+    <p class="post-meta">Mar 31, 2015</p>
+	<meta charset="utf-8">
+  </header>
 
-  <ul class="post-list">
-    
+  <article class="post-content">
+    <h1 id="markdown">Markdown参考资料</h1>
+<ol>
+  <li>GFM(GitHub Flavored Markdown)
+    <ul>
+      <li><a href="https://help.github.com/articles/github-flavored-markdown/">https://help.github.com/articles/github-flavored-markdown/</a></li>
+      <li><a href="https://help.github.com/articles/markdown-basics/">https://help.github.com/articles/markdown-basics/</a></li>
+    </ul>
+  </li>
+  <li>Standard markdown
+    <ul>
+      <li><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="pandoc">Pandoc参考资料</h1>
+<ol>
+  <li>可以从<a href="https://github.com/jgm/pandoc/releases/">这里</a>安装Pandoc，直接下载msi文件安装就行</li>
+  <li>虽然是2012年的博客，不过其中的东西都还好用，比如编译pdf的命令。<a href="http://www.yangzhiping.com/tech/pandoc.html">http://www.yangzhiping.com/tech/pandoc.html</a></li>
+  <li>这里面详细解释了pandoc编译中文pdf的各种坑。<a href="http://blog.sina.com.cn/s/blog_5ee56d450101dah2.html">http://blog.sina.com.cn/s/blog_5ee56d450101dah2.html</a>
+    <ul>
+      <li>使用<code>fc-list &gt; C:\fonts.txt</code>的方式输出系统中的字体名字非常好用，只是列表非常大，可能需要搜索一些关键字来查看，比如_黑_，_宋_之类的</li>
+      <li>目前使用微软雅黑字体（Microsoft YaHei，大小写是敏感的）不会出现文字超过边界，而使用宋体（SimSun）和黑体（SimHei）会出现超出边界的问题，使用模板应该可以，没有亲自测试。相关命令如下</li>
+    </ul>
+
+    <p><code>
+ pandoc test.md -o test.pdf --latex-engine=xelatex -V mainfont="Microsoft YaHei"
+ pandoc test.md -o test.docx --css=https://raw.githubusercontent.com/nicolashery/markdownpad-github/master/markdownpad-github.css (不加`--css`选项貌似效果一样)
+</code></p>
+  </li>
+</ol>
+
+<h1 id="jekyll">Jekyll参考资料</h1>
+<ol>
+  <li>安装
+    <ul>
+      <li><a href="http://jekyllrb.com/docs/windows/#installation">http://jekyllrb.com/docs/windows/#installation</a></li>
       <li>
-        <span class="post-meta">Mar 31, 2015</span>
+        <p>如果遇到报错“Liquid Exception: Incompatible character encoding”，需要更改console的code page</p>
 
-        <h2>
-          <a class="post-link" href="/learning/2015/03/31/markdown_pandoc_jeklly.html">Markdown, Pandoc and Jekyll</a>		  
-        </h2>		
-		Markdown参考资料
-
-  GFM(GitHub Flavored Markdown)
-    
-      https://help.github.com/articles/github-flavored-markdown/
-      https://help.github.com/articles/markdown-basics/
-    
-  
-  Standard markdown
-    
-      http://daringfireball.net/projects/markdown/syntax
-    
-  
-
-
-
+        <p><code>     
+    chcp 65001
+ </code></p>
       </li>
-    
-  </ul>
+      <li><a href="http://jekyll-windows.juthilo.com/">http://jekyll-windows.juthilo.com/</a>。在安装jekyll gem包的时候会遇到ssl报错的情况，可以参见<a href="https://gist.github.com/luislavena/f064211759ee0f806c88">https://gist.github.com/luislavena/f064211759ee0f806c88</a></li>
+    </ul>
+  </li>
+</ol>
 
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+
+  </article>
 
 </div>
 

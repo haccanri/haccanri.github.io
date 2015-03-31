@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Qing&#39;s Blog</title>
+    <description>A website for sharing experience.
+</description>
+    <link>http://haccanri.github.io/</link>
+    <atom:link href="http://haccanri.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 31 Mar 2015 15:22:24 +0800</pubDate>
+    <lastBuildDate>Tue, 31 Mar 2015 15:22:24 +0800</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Markdown, Pandoc and Jekyll</title>
+        <description>&lt;h1 id=&quot;markdown&quot;&gt;Markdown参考资料&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;GFM(GitHub Flavored Markdown)
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://help.github.com/articles/github-flavored-markdown/&quot;&gt;https://help.github.com/articles/github-flavored-markdown/&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://help.github.com/articles/markdown-basics/&quot;&gt;https://help.github.com/articles/markdown-basics/&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Standard markdown
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://daringfireball.net/projects/markdown/syntax&quot;&gt;http://daringfireball.net/projects/markdown/syntax&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;pandoc&quot;&gt;Pandoc参考资料&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;可以从&lt;a href=&quot;https://github.com/jgm/pandoc/releases/&quot;&gt;这里&lt;/a&gt;安装Pandoc，直接下载msi文件安装就行&lt;/li&gt;
+  &lt;li&gt;虽然是2012年的博客，不过其中的东西都还好用，比如编译pdf的命令。&lt;a href=&quot;http://www.yangzhiping.com/tech/pandoc.html&quot;&gt;http://www.yangzhiping.com/tech/pandoc.html&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;这里面详细解释了pandoc编译中文pdf的各种坑。&lt;a href=&quot;http://blog.sina.com.cn/s/blog_5ee56d450101dah2.html&quot;&gt;http://blog.sina.com.cn/s/blog_5ee56d450101dah2.html&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;使用&lt;code&gt;fc-list &amp;gt; C:\fonts.txt&lt;/code&gt;的方式输出系统中的字体名字非常好用，只是列表非常大，可能需要搜索一些关键字来查看，比如_黑_，_宋_之类的&lt;/li&gt;
+      &lt;li&gt;目前使用微软雅黑字体（Microsoft YaHei，大小写是敏感的）不会出现文字超过边界，而使用宋体（SimSun）和黑体（SimHei）会出现超出边界的问题，使用模板应该可以，没有亲自测试。相关命令如下&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;code&gt;
+ pandoc test.md -o test.pdf --latex-engine=xelatex -V mainfont=&quot;Microsoft YaHei&quot;
+ pandoc test.md -o test.docx --css=https://raw.githubusercontent.com/nicolashery/markdownpad-github/master/markdownpad-github.css (不加`--css`选项貌似效果一样)
+&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;jekyll&quot;&gt;Jekyll参考资料&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;安装
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://jekyllrb.com/docs/windows/#installation&quot;&gt;http://jekyllrb.com/docs/windows/#installation&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;如果遇到报错“Liquid Exception: Incompatible character encoding”，需要更改console的code page&lt;/p&gt;
+
+        &lt;p&gt;&lt;code&gt;     
+    chcp 65001
+ &lt;/code&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://jekyll-windows.juthilo.com/&quot;&gt;http://jekyll-windows.juthilo.com/&lt;/a&gt;。在安装jekyll gem包的时候会遇到ssl报错的情况，可以参见&lt;a href=&quot;https://gist.github.com/luislavena/f064211759ee0f806c88&quot;&gt;https://gist.github.com/luislavena/f064211759ee0f806c88&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Tue, 31 Mar 2015 21:50:52 +0800</pubDate>
+        <link>http://haccanri.github.io/learning/2015/03/31/markdown_pandoc_jeklly.html</link>
+        <guid isPermaLink="true">http://haccanri.github.io/learning/2015/03/31/markdown_pandoc_jeklly.html</guid>
+        
+        <category>markdown</category>
+        
+        <category>pandoc</category>
+        
+        <category>jekyll</category>
+        
+        
+        <category>learning</category>
+        
+      </item>
+    
+  </channel>
+</rss>
