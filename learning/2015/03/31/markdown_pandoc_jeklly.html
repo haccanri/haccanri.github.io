@@ -87,13 +87,11 @@
       <li>使用<code>fc-list &gt; C:\fonts.txt</code>的方式输出系统中的字体名字非常好用，只是列表非常大，可能需要搜索一些关键字来查看，比如_黑_，_宋_之类的</li>
       <li>目前使用微软雅黑字体（Microsoft YaHei，大小写是敏感的）不会出现文字超过边界，而使用宋体（SimSun）和黑体（SimHei）会出现超出边界的问题，使用模板应该可以，没有亲自测试。相关命令如下</li>
     </ul>
-
-    <p><code>
- pandoc test.md -o test.pdf --latex-engine=xelatex -V mainfont="Microsoft YaHei"
- pandoc test.md -o test.docx --css=https://raw.githubusercontent.com/nicolashery/markdownpad-github/master/markdownpad-github.css (不加`--css`选项貌似效果一样)
-</code></p>
   </li>
 </ol>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">pandoc test.md -o test.pdf --latex-engine<span class="o">=</span>xelatex -V <span class="nv">mainfont</span><span class="o">=</span><span class="s2">&quot;Microsoft YaHei&quot;</span>
+pandoc test.md -o test.docx --css<span class="o">=</span>https://raw.githubusercontent.com/nicolashery/markdownpad-github/master/markdownpad-github.css <span class="o">(</span>不加<span class="sb">`</span>--css<span class="sb">`</span>选项貌似效果一样<span class="o">)</span></code></pre></div>
 
 <h1 id="jekyll">Jekyll参考资料</h1>
 <ol>
