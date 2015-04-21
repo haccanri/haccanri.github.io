@@ -137,20 +137,17 @@
     <p>环境模式适用于添加begin,end这样的环境。可以用%environment来触发</p>
   </li>
   <li>
-    <p>脚本模式可以用来实现更复杂的命令，这里给出两个例子。这两个例子都是通过正则表达式获得匹配内容，然后在前后加上一些文本。</p>
-    <ul>
-      <li>例子一，给变量加行内数学模式。如果经常要使用行内数学模式来标记一些变量，那么每次即使按快捷键添加<code>$ $</code>，然后再输入比如变量<code>p</code>也比较麻烦。可以实现一个宏，当输完<code>p</code>之后按下Tab键就可以自动地在<code>p</code>前后加上<code>$ $</code>。触发器为<code>([A-Za-z0-9, _=\^\(\)'\\]+)\t</code>，宏内容为</li>
-    </ul>
+    <p>脚本模式可以用来实现更复杂的命令，下面给出两个例子。这两个例子都是通过正则表达式获得匹配内容，然后在前后加上一些文本。</p>
   </li>
 </ul>
+
+<p><strong>例子一，给变量加行内数学模式。</strong>如果经常要使用行内数学模式来标记一些变量，那么每次即使按快捷键添加<code>$ $</code>，然后再输入比如变量<code>p</code>也比较麻烦。可以实现一个宏，当输完<code>p</code>之后按下Tab键就可以自动地在<code>p</code>前后加上<code>$ $</code>。触发器为<code>([A-Za-z0-9, _=\^\(\)'\\]+)\t</code>，宏内容为</p>
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">%</span><span class="nx">SCRIPT</span>
 <span class="kd">var</span> <span class="nx">math</span> <span class="o">=</span>  <span class="nx">triggerMatches</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="nx">editor</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;$ &quot;</span> <span class="o">+</span> <span class="nx">math</span> <span class="o">+</span> <span class="s2">&quot; $&quot;</span><span class="p">);</span></code></pre></div>
 
-<ul>
-  <li>例子二，引用时自动加上前后缀。引用不同的类型，比如章、节、图、表、公式等需要前后加不同的描述，可以实现一个脚本自动根据标签的前几个字符来判断。假设用户给章的label都是<code>\label{cha:XXX}</code>，给节的都是<code>\label{sec:XXX}</code>之类的可以使用下面的宏。触发器为<code>\\ref\{([a-z]{2,10}):\w+\}\t</code>，宏为</li>
-</ul>
+<p><strong>例子二，引用时自动加上前后缀。</strong>引用不同的类型，比如章、节、图、表、公式等需要前后加不同的描述，可以实现一个脚本自动根据标签的前几个字符来判断。假设用户给章的label都是<code>\label{cha:XXX}</code>，给节的都是<code>\label{sec:XXX}</code>之类的可以使用下面的宏。触发器为<code>\\ref\{([a-z]{2,10}):\w+\}\t</code>，宏为</p>
 
 <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">%</span><span class="nx">SCRIPT</span>
 <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">triggerMatches</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>

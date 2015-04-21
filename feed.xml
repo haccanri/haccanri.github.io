@@ -6,8 +6,8 @@
 </description>
     <link>http://haccanri.github.io/</link>
     <atom:link href="http://haccanri.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 21 Apr 2015 23:26:48 +0800</pubDate>
-    <lastBuildDate>Tue, 21 Apr 2015 23:26:48 +0800</lastBuildDate>
+    <pubDate>Tue, 21 Apr 2015 23:39:24 +0800</pubDate>
+    <lastBuildDate>Tue, 21 Apr 2015 23:39:24 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -18,12 +18,8 @@
 
 &lt;ol&gt;
   &lt;li&gt;查找bibtex中固定字段。应用场景为将某些工具导出的bibitem中的note，abstract, keyword, volume等删去
-以Note字段为例，正则表达式为&lt;code&gt;^ *Note(.|\n)*?\}.*$&lt;/code&gt;，可以匹配多行的一个字段，&lt;code&gt;?&lt;/code&gt;为非贪婪匹配。经测试在Notepad++里可以正常使用该正则表达式。需要删去该字段只需要将匹配的替换成空字符串即可。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://haccanri.github.io/downloads/images/notepad_replace.png&quot; alt=&quot;center&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
+以Note字段为例，正则表达式为&lt;code&gt;^ *Note(.|\n)*?\}.*$&lt;/code&gt;，可以匹配多行的一个字段，&lt;code&gt;?&lt;/code&gt;为非贪婪匹配。经测试在Notepad++里可以正常使用该正则表达式。需要删去该字段只需要将匹配的替换成空字符串即可。&lt;br /&gt;
+&lt;img src=&quot;http://haccanri.github.io/downloads/images/notepad_replace.png&quot; alt=&quot;center&quot; /&gt;&lt;/li&gt;
   &lt;li&gt;我系一些同学参考文献是手动输入的bib item，当需要批量下载bibtex文件时可以使用。从bib item中自动爬出题目及使用&lt;a href=&quot;https://github.com/hildensia/scholar&quot;&gt;scholar.py&lt;/a&gt;自动从Google Scholar下载bibitem的的脚本参见&lt;a href=&quot;https://gist.github.com/haccanri/eac4e7b83e11ae05e3b0&quot;&gt;https://gist.github.com/haccanri/eac4e7b83e11ae05e3b0&lt;/a&gt;。&lt;/li&gt;
   &lt;li&gt;如果&lt;a href=&quot;https://github.com/xueruini/thuthesis&quot;&gt;ThuThesis&lt;/a&gt;的bib style不能满足系里各种奇葩的需求，最后一招是手动修改&lt;code&gt;.bbl&lt;/code&gt;文件，修改成任何你想要的格式，然后只编译tex，不要修改bib文件也不要编译bib就可以得到最终的参考文献格式。在修改好&lt;code&gt;.bbl&lt;/code&gt;文件之后最好备份一下，以免误操作重新编译bib覆盖了&lt;code&gt;.bbl&lt;/code&gt;文件。&lt;/li&gt;
   &lt;li&gt;参考文献Title大小写。考虑到之前论文的参考文献要求，我在论文题目中仅保留了第一个单词首字母大写。有以下几个例外情况：
@@ -85,7 +81,7 @@
   &lt;/li&gt;
   &lt;li&gt;在编译tex之前执行&lt;code&gt;gbk2uni main.out&lt;/code&gt;命令可以解决书签中文乱码的问题。可以在TeXstudio中自定义一个命令，并绑定快捷键使用起来会很方便，如果导入我的设置文件的话可以在F1快捷编译之后，再按F2编译一次，就可以得到中文书签正常的pdf。自定义的命令其实是将&lt;code&gt;gbk2uni main.out&lt;/code&gt;和编译命令结合在一起得到的，如下图所示
 &lt;img src=&quot;http://haccanri.github.io/downloads/images/bookmark.png&quot; alt=&quot;center&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;用Python和Matplotlib画图中有中文的情况请参考[页面1](http://blog.sciencenet.cn/home.php?mod=space&amp;amp;uid=43412&amp;amp;do=blog&amp;amp;id=343002）和&lt;a href=&quot;http://blog.csdn.net/rumswell/article/details/6544377&quot;&gt;页面2&lt;/a&gt;，我是两种方法结合在一起最后实现的显示中文。&lt;/li&gt;
+  &lt;li&gt;用Python和Matplotlib画图中有中文的情况请参考&lt;a href=&quot;http://blog.sciencenet.cn/home.php?mod=space&amp;amp;uid=43412&amp;amp;do=blog&amp;amp;id=343002&quot;&gt;页面1&lt;/a&gt;和&lt;a href=&quot;http://blog.csdn.net/rumswell/article/details/6544377&quot;&gt;页面2&lt;/a&gt;，我是两种方法结合在一起最后实现的显示中文。&lt;/li&gt;
 &lt;/ol&gt;
 
 </description>
@@ -178,20 +174,17 @@
     &lt;p&gt;环境模式适用于添加begin,end这样的环境。可以用%environment来触发&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;脚本模式可以用来实现更复杂的命令，这里给出两个例子。这两个例子都是通过正则表达式获得匹配内容，然后在前后加上一些文本。&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;例子一，给变量加行内数学模式。如果经常要使用行内数学模式来标记一些变量，那么每次即使按快捷键添加&lt;code&gt;$ $&lt;/code&gt;，然后再输入比如变量&lt;code&gt;p&lt;/code&gt;也比较麻烦。可以实现一个宏，当输完&lt;code&gt;p&lt;/code&gt;之后按下Tab键就可以自动地在&lt;code&gt;p&lt;/code&gt;前后加上&lt;code&gt;$ $&lt;/code&gt;。触发器为&lt;code&gt;([A-Za-z0-9, _=\^\(\)&#39;\\]+)\t&lt;/code&gt;，宏内容为&lt;/li&gt;
-    &lt;/ul&gt;
+    &lt;p&gt;脚本模式可以用来实现更复杂的命令，下面给出两个例子。这两个例子都是通过正则表达式获得匹配内容，然后在前后加上一些文本。&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;例子一，给变量加行内数学模式。&lt;/strong&gt;如果经常要使用行内数学模式来标记一些变量，那么每次即使按快捷键添加&lt;code&gt;$ $&lt;/code&gt;，然后再输入比如变量&lt;code&gt;p&lt;/code&gt;也比较麻烦。可以实现一个宏，当输完&lt;code&gt;p&lt;/code&gt;之后按下Tab键就可以自动地在&lt;code&gt;p&lt;/code&gt;前后加上&lt;code&gt;$ $&lt;/code&gt;。触发器为&lt;code&gt;([A-Za-z0-9, _=\^\(\)&#39;\\]+)\t&lt;/code&gt;，宏内容为&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SCRIPT&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;math&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;  &lt;span class=&quot;nx&quot;&gt;triggerMatches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;editor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;$ &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;math&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot; $&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;例子二，引用时自动加上前后缀。引用不同的类型，比如章、节、图、表、公式等需要前后加不同的描述，可以实现一个脚本自动根据标签的前几个字符来判断。假设用户给章的label都是&lt;code&gt;\label{cha:XXX}&lt;/code&gt;，给节的都是&lt;code&gt;\label{sec:XXX}&lt;/code&gt;之类的可以使用下面的宏。触发器为&lt;code&gt;\\ref\{([a-z]{2,10}):\w+\}\t&lt;/code&gt;，宏为&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;例子二，引用时自动加上前后缀。&lt;/strong&gt;引用不同的类型，比如章、节、图、表、公式等需要前后加不同的描述，可以实现一个脚本自动根据标签的前几个字符来判断。假设用户给章的label都是&lt;code&gt;\label{cha:XXX}&lt;/code&gt;，给节的都是&lt;code&gt;\label{sec:XXX}&lt;/code&gt;之类的可以使用下面的宏。触发器为&lt;code&gt;\\ref\{([a-z]{2,10}):\w+\}\t&lt;/code&gt;，宏为&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SCRIPT&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;triggerMatches&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;

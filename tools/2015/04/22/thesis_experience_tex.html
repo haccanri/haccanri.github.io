@@ -69,12 +69,8 @@
 
 <ol>
   <li>查找bibtex中固定字段。应用场景为将某些工具导出的bibitem中的note，abstract, keyword, volume等删去
-以Note字段为例，正则表达式为<code>^ *Note(.|\n)*?\}.*$</code>，可以匹配多行的一个字段，<code>?</code>为非贪婪匹配。经测试在Notepad++里可以正常使用该正则表达式。需要删去该字段只需要将匹配的替换成空字符串即可。</li>
-</ol>
-
-<p><img src="http://haccanri.github.io/downloads/images/notepad_replace.png" alt="center" /></p>
-
-<ol>
+以Note字段为例，正则表达式为<code>^ *Note(.|\n)*?\}.*$</code>，可以匹配多行的一个字段，<code>?</code>为非贪婪匹配。经测试在Notepad++里可以正常使用该正则表达式。需要删去该字段只需要将匹配的替换成空字符串即可。<br />
+<img src="http://haccanri.github.io/downloads/images/notepad_replace.png" alt="center" /></li>
   <li>我系一些同学参考文献是手动输入的bib item，当需要批量下载bibtex文件时可以使用。从bib item中自动爬出题目及使用<a href="https://github.com/hildensia/scholar">scholar.py</a>自动从Google Scholar下载bibitem的的脚本参见<a href="https://gist.github.com/haccanri/eac4e7b83e11ae05e3b0">https://gist.github.com/haccanri/eac4e7b83e11ae05e3b0</a>。</li>
   <li>如果<a href="https://github.com/xueruini/thuthesis">ThuThesis</a>的bib style不能满足系里各种奇葩的需求，最后一招是手动修改<code>.bbl</code>文件，修改成任何你想要的格式，然后只编译tex，不要修改bib文件也不要编译bib就可以得到最终的参考文献格式。在修改好<code>.bbl</code>文件之后最好备份一下，以免误操作重新编译bib覆盖了<code>.bbl</code>文件。</li>
   <li>参考文献Title大小写。考虑到之前论文的参考文献要求，我在论文题目中仅保留了第一个单词首字母大写。有以下几个例外情况：
@@ -136,7 +132,7 @@
   </li>
   <li>在编译tex之前执行<code>gbk2uni main.out</code>命令可以解决书签中文乱码的问题。可以在TeXstudio中自定义一个命令，并绑定快捷键使用起来会很方便，如果导入我的设置文件的话可以在F1快捷编译之后，再按F2编译一次，就可以得到中文书签正常的pdf。自定义的命令其实是将<code>gbk2uni main.out</code>和编译命令结合在一起得到的，如下图所示
 <img src="http://haccanri.github.io/downloads/images/bookmark.png" alt="center" /></li>
-  <li>用Python和Matplotlib画图中有中文的情况请参考[页面1](http://blog.sciencenet.cn/home.php?mod=space&amp;uid=43412&amp;do=blog&amp;id=343002）和<a href="http://blog.csdn.net/rumswell/article/details/6544377">页面2</a>，我是两种方法结合在一起最后实现的显示中文。</li>
+  <li>用Python和Matplotlib画图中有中文的情况请参考<a href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=43412&amp;do=blog&amp;id=343002">页面1</a>和<a href="http://blog.csdn.net/rumswell/article/details/6544377">页面2</a>，我是两种方法结合在一起最后实现的显示中文。</li>
 </ol>
 
 
