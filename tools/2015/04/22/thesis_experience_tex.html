@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>毕业论文写作中的工具使用经验</title>
+  <meta name="description" content="本贴叙述我在使用ThuThesis模板写毕业论文中遇到的一些技术性问题及其解决方案。希望给大家带来帮助，少走一些弯路。">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://haccanri.github.io/tools/2015/04/22/thesis_experience_tex.html">
+  <link rel="alternate" type="application/rss+xml" title="Qing's Blog" href="http://haccanri.github.io/feed.xml" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Qing's Blog</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">毕业论文写作中的工具使用经验</h1>
+    <p class="post-meta">Apr 22, 2015</p>
+	<meta charset="utf-8">
+  </header>
+
+  <article class="post-content">
+    <p>本贴叙述我在使用<a href="https://github.com/xueruini/thuthesis">ThuThesis</a>模板写毕业论文中遇到的一些技术性问题及其解决方案。希望给大家带来帮助，少走一些弯路。</p>
+
+<h2 id="section">参考文献相关</h2>
+
+<ol>
+  <li>查找bibtex中固定字段。应用场景为将某些工具导出的bibitem中的note，abstract, keyword, volume等删去
+以Note字段为例，正则表达式为<code>^ *Note(.|\n)*?\}.*$</code>，可以匹配多行的一个字段，<code>?</code>为非贪婪匹配。经测试在Notepad++里可以正常使用该正则表达式。需要删去该字段只需要将匹配的替换成空字符串即可。</li>
+</ol>
+
+<p><img src="http://haccanri.github.io/downloads/images/notepad_replace.png" alt="center" /></p>
+
+<ol>
+  <li>我系一些同学参考文献是手动输入的bib item，当需要批量下载bibtex文件时可以使用。从bib item中自动爬出题目及使用<a href="https://github.com/hildensia/scholar">scholar.py</a>自动从Google Scholar下载bibitem的的脚本参见<a href="https://gist.github.com/haccanri/eac4e7b83e11ae05e3b0">https://gist.github.com/haccanri/eac4e7b83e11ae05e3b0</a>。</li>
+  <li>如果<a href="https://github.com/xueruini/thuthesis">ThuThesis</a>的bib style不能满足系里各种奇葩的需求，最后一招是手动修改<code>.bbl</code>文件，修改成任何你想要的格式，然后只编译tex，不要修改bib文件也不要编译bib就可以得到最终的参考文献格式。在修改好<code>.bbl</code>文件之后最好备份一下，以免误操作重新编译bib覆盖了<code>.bbl</code>文件。</li>
+  <li>参考文献Title大小写。考虑到之前论文的参考文献要求，我在论文题目中仅保留了第一个单词首字母大写。有以下几个例外情况：
+    <ul>
+      <li>专有名词，如”NP problem”</li>
+      <li>冒号后面的第一个单词，比如Something in title: A case study</li>
+      <li>书的名字，<code>@book</code>中题目除虚词外每个单词都保留首字母大写</li>
+    </ul>
+
+    <p>处理大小写我使用了网上的一个<a href="http://www.stat.berkeley.edu/~paciorek/computingTips/Change_case_your_journal_ti.html">perl脚本</a>， 使用<code>perl lc.pl file</code>可以完成上面的除第三条以外的其他大小写转换，有以下几点要注意
+ - 在windows系统中，要把<code>system</code>命令里面的<code>cp</code>和<code>rm</code>命令改为对应的<code>copy</code>和<code>del</code>命令
+ - <code>file</code>为不带后缀名的文件名，也就是要处理test.tex时<code>file</code>为’test’。不知道作者为什么设置得这么诡异。
+ - 处理完有一些小的bug，比如Title中第一个单词有些全部大写的没有正确转换，比如”THE”，知道是故意的还是bug
+ - 上面第二条冒号规则需要手工处理，或许有空了可以改进吧，不过perl脚本不太愿意看</p>
+
+    <p>有些Latex bib style本身也会对大小写做些处理，比如只保留首字母大写，这时如果想手工保留某些专有名词的大写，可以给大写字符串专门加上大括号，比如<code>{NP}</code>。JabRef软件可以自动做这样的处理。</p>
+  </li>
+  <li>参考文献引用到一本书具体的页面，并且显示在上标里，参见<a href="http://tex.stackexchange.com/questions/51646/superscript-page-numbers-with-natbib">这个页面</a>，修改cls文件里对应的语句即可。</li>
+</ol>
+
+<h2 id="latex">零散的Latex命令及小技巧</h2>
+
+<ol>
+  <li><code>\verb|XXX|</code>可以原文引入<code>XXX</code>处的文字，适合转义比较多且不包含命令的情况。<code>\textt{}</code>貌似可以处理里面包含命令的情况，没有测试</li>
+  <li><code>\linespread{1.1}</code>可以修改行距，1.0是原本的行距，1.1是之前的1.1倍。这个可以高效地调整页数，一般1.1倍行距肉眼很难看出来。
+在投会议论文时，由于页数限制，往往压缩的时候大招就是使用<code>\linespread{0.95}</code>之类的。不到万不得已，最好不要使用这招。</li>
+  <li>如果写作的过程中需要给之后的写作提个醒，但在最终版中方便地去掉，可以有几种方式来加上类似于Todo标签
+    <ol>
+      <li>最简单不折腾的是，用注释<code>%todo</code>来标注出来。在<a href="http://texstudio.sourceforge.net/">TeXstuio</a>软件中会在结构树中自动罗列出<code>%todo</code>标识的todo标签。</li>
+      <li>
+        <p>自己定义一个简单的todo命令来标识，通过设置类似于debug开关的选项来决定是否在pdf中输出。</p>
+
+        <p><code>
+ \newcommand{\todo}[1]{}  %comment not showed
+ %\newcommand{\todo}[1]{\color{blue} #1} %comment showed
+</code>
+需要显示的话注释第一条，最终打印版本注释第二条（代码中所示）。comment的格式可以在命令中自己修改。代码中使用的是蓝色来标识的，需要使用xcolor这个包。</p>
+      </li>
+      <li>可以使用[todonotes][http://www.ctan.org/tex-archive/macros/latex/contrib/todonotes/]等专业的tex package来完成，但如果只是给自己看的话真心没必要折腾这个。</li>
+    </ol>
+  </li>
+  <li>一个可以把Excel中的表格转换为Tex代码的Excel加载项。虽然逻辑很简单，但非常实用。矩阵等也可以用这个来处理。下载链接为<a href="https://www.ctan.org/tex-archive/support/excel2latex/">https://www.ctan.org/tex-archive/support/excel2latex/</a></li>
+</ol>
+
+<h2 id="latex-1">Latex中文编码</h2>
+
+<ol>
+  <li>模板及Tex文件默认是GB18030编码，用pdflatex编译没问题。但是在GitHub for windows中是乱码，因为GitHub for windows目前只支持标准utf8。本来想折腾下，后来放弃了。Git Gui可以支持GB18030编码，最后的方案是在这里看GB18030编码的diff。
+    <ul>
+      <li>将所有tex及模板文档改为utf-8直接用xeLatex编译会报错<code>Command \nobreakspace unavailable in encoding EU1</code>。按照<a href="http://tex.stackexchange.com/questions/78766/command-nobreakspace-unavailable-in-encoding-eu1-if-i-use-xelatex">这个页面</a>中的说明删掉xunicode引用，并且可以用xeLatex编译成功。但pdfLatex编译仍然失败，报错为<code>! Argument of \HyPsd@GetTwoBytes has an extra</code>。</li>
+      <li>终极解决方案是用CJKutf8 package并且用支持utf8的模板，鉴于我的论文模板不支持utf8，到这里决定不折腾了。以后想折腾可以参考以下页面
+        <ul>
+          <li><a href="http://duguying.net/article/texlive%E4%B8%AD%E6%96%87%E4%B9%A6%E7%AD%BE%E4%B9%B1%E7%A0%81">texlive中文书签乱码</a></li>
+          <li><a href="http://www.woxihuan.com/28722687/1343209679129632.shtml?isalbum=1">casthesis utf8的问题</a></li>
+        </ul>
+      </li>
+      <li>最新版的ThuThesis已经支持utf-8，不过貌似不太稳定（只能用xeLatex，pdfLatex需要安装字字体之类的比较麻烦），我编译出来的图片位置不对。不折腾了…</li>
+    </ul>
+  </li>
+  <li>在编译tex之前执行<code>gbk2uni main.out</code>命令可以解决书签中文乱码的问题。可以在TeXstudio中自定义一个命令，并绑定快捷键使用起来会很方便，如果导入我的设置文件的话可以在F1快捷编译之后，再按F2编译一次，就可以得到中文书签正常的pdf。自定义的命令其实是将<code>gbk2uni main.out</code>和编译命令结合在一起得到的，如下图所示
+<img src="http://haccanri.github.io/downloads/images/bookmark.png" alt="center" /></li>
+  <li>用Python和Matplotlib画图中有中文的情况请参考[页面1](http://blog.sciencenet.cn/home.php?mod=space&amp;uid=43412&amp;do=blog&amp;id=343002）和<a href="http://blog.csdn.net/rumswell/article/details/6544377">页面2</a>，我是两种方法结合在一起最后实现的显示中文。</li>
+</ol>
+
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Qing's Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+		<p class="text">A website for sharing experience.
+</p>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/haccanri">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">haccanri</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Except where otherwise noted, content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Attribution-NonCommercial-NoDerivatives 4.0 International license</a>.
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

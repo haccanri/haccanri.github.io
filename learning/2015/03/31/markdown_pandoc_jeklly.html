@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Markdown, Pandoc and Jekyll</title>
-  <meta name="description" content="Markdown参考资料  GFM(GitHub Flavored Markdown)          https://help.github.com/articles/github-flavored-markdown/      https://help.github.com/articles/markdow...">
+  <meta name="description" content="本贴介绍我在学习Markdown, Pandoc, Jekyll的过程中很初步的一些经验。">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="canonical" href="http://haccanri.github.io/learning/2015/03/31/markdown_pandoc_jeklly.html">
@@ -63,7 +63,9 @@
   </header>
 
   <article class="post-content">
-    <h1 id="markdown">Markdown参考资料</h1>
+    <p>本贴介绍我在学习Markdown, Pandoc, Jekyll的过程中很初步的一些经验。</p>
+
+<h1 id="markdown">Markdown参考资料</h1>
 <ol>
   <li>GFM(GitHub Flavored Markdown)
     <ul>
@@ -74,6 +76,11 @@
   <li>Standard markdown
     <ul>
       <li><a href="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</a></li>
+    </ul>
+  </li>
+  <li>Tips
+    <ul>
+      <li>End a line with two spaces to add a <code>&lt;br/&gt;</code> linebreak:</li>
     </ul>
   </li>
 </ol>
@@ -92,6 +99,17 @@
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">pandoc test.md -o test.pdf --latex-engine<span class="o">=</span>xelatex -V <span class="nv">mainfont</span><span class="o">=</span><span class="s2">&quot;Microsoft YaHei&quot;</span>
 pandoc test.md -o test.docx --css<span class="o">=</span>https://raw.githubusercontent.com/nicolashery/markdownpad-github/master/markdownpad-github.css <span class="o">(</span>不加<span class="sb">`</span>--css<span class="sb">`</span>选项貌似效果一样<span class="o">)</span></code></pre></div>
+
+<ol>
+  <li>pandoc的更多用法参见http://johnmacfarlane.net/pandoc/demos.html
+    <ul>
+      <li>用–toc选项可以在html中生成目录。</li>
+      <li>用beamer做slides也超赞</li>
+      <li>HTML slide shows也超赞</li>
+    </ul>
+  </li>
+  <li>用pandoc可以把带latex公式的markdown文件转化成docx的公式以及包含公式的pdf，这个超赞！</li>
+</ol>
 
 <h1 id="jekyll">Jekyll参考资料</h1>
 <ol>
