@@ -69,11 +69,12 @@
 
 <ol>
   <li>查找bibtex中固定字段。应用场景为将某些工具导出的bibitem中的note，abstract, keyword, volume等删去
-以Note字段为例，正则表达式为<code>^ *Note(.|\n)*?\}.*$</code>，可以匹配多行的一个字段，<code>?</code>为非贪婪匹配。经测试在Notepad++里可以正常使用该正则表达式。需要删去该字段只需要将匹配的替换成空字符串即可。
+以Note字段为例，正则表达式为<code>^ *Note(.|\n)*?\}.*$</code>，可以匹配多行的一个字段，<code>?</code>为非贪婪匹配。经测试在Notepad++里可以正常使用该正则表达式。需要删去该字段时只需要将匹配的替换成空字符串即可。<br />
 <img src="http://haccanri.github.io/downloads/images/notepad_replace.png" alt="center" /></li>
-  <li>我系一些同学参考文献是手动输入的bib item，当需要批量下载bibtex文件时可以使用。从bib item中自动爬出题目及使用<a href="https://github.com/hildensia/scholar">scholar.py</a>自动从Google Scholar下载bibitem的的脚本参见<a href="https://gist.github.com/haccanri/eac4e7b83e11ae05e3b0">https://gist.github.com/haccanri/eac4e7b83e11ae05e3b0</a>。</li>
+  <li>我系一些同学参考文献是手动输入的bib item，当需要批量下载bibtex文件时可以使用一些自动化脚本。从bib item中自动爬出题目及使用<a href="https://github.com/hildensia/scholar">scholar.py</a>自动从Google Scholar下载bibitem的的脚本参见<a href="https://gist.github.com/haccanri/eac4e7b83e11ae05e3b0">https://gist.github.com/haccanri/eac4e7b83e11ae05e3b0</a>。</li>
+  <li>推一个Chrome浏览器的插件，可以搜索文献，大量使用Google Scholar的时候会方便一些。链接<a href="https://chrome.google.com/webstore/detail/google-scholar-button/ldipcbpaocekfooobnbcddclnhejkcpn">https://chrome.google.com/webstore/detail/google-scholar-button/ldipcbpaocekfooobnbcddclnhejkcpn</a></li>
   <li>如果<a href="https://github.com/xueruini/thuthesis">ThuThesis</a>的bib style不能满足系里各种奇葩的需求，最后一招是手动修改<code>.bbl</code>文件，修改成任何你想要的格式，然后只编译tex，不要修改bib文件也不要编译bib就可以得到最终的参考文献格式。在修改好<code>.bbl</code>文件之后最好备份一下，以免误操作重新编译bib覆盖了<code>.bbl</code>文件。</li>
-  <li>参考文献Title大小写。考虑到之前论文的参考文献要求，我在论文题目中仅保留了第一个单词首字母大写。有以下几个例外情况：
+  <li>参考文献Title大小写。考虑到之前投稿论文的参考文献要求，我在论文题目中仅保留了第一个单词首字母大写，剩下的小写。有以下几个例外情况：
     <ul>
       <li>专有名词，如”NP problem”</li>
       <li>冒号后面的第一个单词，比如Something in title: A case study</li>
@@ -83,7 +84,7 @@
     <p>处理大小写我使用了网上的一个<a href="http://www.stat.berkeley.edu/~paciorek/computingTips/Change_case_your_journal_ti.html">perl脚本</a>， 使用<code>perl lc.pl file</code>可以完成上面的除第三条以外的其他大小写转换，有以下几点要注意
  - 在windows系统中，要把<code>system</code>命令里面的<code>cp</code>和<code>rm</code>命令改为对应的<code>copy</code>和<code>del</code>命令
  - <code>file</code>为不带后缀名的文件名，也就是要处理test.tex时<code>file</code>为’test’。不知道作者为什么设置得这么诡异。
- - 处理完有一些小的bug，比如Title中第一个单词有些全部大写的没有正确转换，比如”THE”，知道是故意的还是bug
+ - 处理完有一些小的bug，比如Title中第一个单词有些全部大写的没有正确转换，比如”THE”，不知道是故意的还是bug
  - 上面第二条冒号规则需要手工处理，或许有空了可以改进吧，不过perl脚本不太愿意看</p>
 
     <p>有些Latex bib style本身也会对大小写做些处理，比如只保留首字母大写，这时如果想手工保留某些专有名词的大写，可以给大写字符串专门加上大括号，比如<code>{NP}</code>。JabRef软件可以自动做这样的处理。</p>
@@ -97,9 +98,9 @@
   <li><code>\verb|XXX|</code>可以原文引入<code>XXX</code>处的文字，适合转义比较多且不包含命令的情况。<code>\textt{}</code>貌似可以处理里面包含命令的情况，没有测试</li>
   <li><code>\linespread{1.1}</code>可以修改行距，1.0是原本的行距，1.1是之前的1.1倍。这个可以高效地调整页数，一般1.1倍行距肉眼很难看出来。
 在投会议论文时，由于页数限制，往往压缩的时候大招就是使用<code>\linespread{0.95}</code>之类的。不到万不得已，最好不要使用这招。</li>
-  <li>如果写作的过程中需要给之后的写作提个醒，但在最终版中方便地去掉，可以有几种方式来加上类似于Todo标签
+  <li>如果写作的过程中需要给之后的写作提个醒，但在最终版中方便地去掉，有以下几种方式来加上类似于Todo标签
     <ol>
-      <li>最简单不折腾的是，用注释<code>%todo</code>来标注出来。在<a href="http://texstudio.sourceforge.net/">TeXstuio</a>软件中会在结构树中自动罗列出<code>%todo</code>标识的todo标签。</li>
+      <li>最简单不折腾的办法是，用注释<code>%todo</code>来标注出来。在<a href="http://texstudio.sourceforge.net/">TeXstuio</a>软件中会在结构树中自动罗列出<code>%todo</code>标识的todo标签。</li>
       <li>
         <p>自己定义一个简单的todo命令来标识，通过设置类似于debug开关的选项来决定是否在pdf中输出。</p>
 
@@ -109,7 +110,7 @@
 </code>
 需要显示的话注释第一条，最终打印版本注释第二条（代码中所示）。comment的格式可以在命令中自己修改。代码中使用的是蓝色来标识的，需要使用xcolor这个包。</p>
       </li>
-      <li>可以使用[todonotes][http://www.ctan.org/tex-archive/macros/latex/contrib/todonotes/]等专业的tex package来完成，但如果只是给自己看的话真心没必要折腾这个。</li>
+      <li>可以使用<a href="http://www.ctan.org/tex-archive/macros/latex/contrib/todonotes/">todonotes</a>等专业的tex package来完成，但如果只是给自己看的话真心没必要折腾这个。</li>
     </ol>
   </li>
   <li>一个可以把Excel中的表格转换为Tex代码的Excel加载项。虽然逻辑很简单，但非常实用。矩阵等也可以用这个来处理。下载链接为<a href="https://www.ctan.org/tex-archive/support/excel2latex/">https://www.ctan.org/tex-archive/support/excel2latex/</a></li>
@@ -130,7 +131,7 @@
       <li>最新版的ThuThesis已经支持utf-8，不过貌似不太稳定（只能用xeLatex，pdfLatex需要安装字字体之类的比较麻烦），我编译出来的图片位置不对。不折腾了…</li>
     </ul>
   </li>
-  <li>在编译tex之前执行<code>gbk2uni main.out</code>命令可以解决书签中文乱码的问题。可以在TeXstudio中自定义一个命令，并绑定快捷键使用起来会很方便，如果导入我的设置文件的话可以在F1快捷编译之后，再按F2编译一次，就可以得到中文书签正常的pdf。自定义的命令其实是将<code>gbk2uni main.out</code>和编译命令结合在一起得到的，如下图所示
+  <li>在编译tex之前执行<code>gbk2uni main.out</code>命令可以解决书签中文乱码的问题。可以在TeXstudio中自定义一个命令，绑定快捷键使用起来会很方便。如果导入我的设置文件的话可以在F1快捷编译之后，再按F2编译一次，就可以得到中文书签正常的pdf。自定义的命令其实是将<code>gbk2uni main.out</code>和编译命令结合在一起得到的，如下图所示
 <img src="http://haccanri.github.io/downloads/images/bookmark.png" alt="center" /></li>
   <li>用Python和Matplotlib画图中有中文的情况请参考<a href="http://blog.sciencenet.cn/home.php?mod=space&amp;uid=43412&amp;do=blog&amp;id=343002">页面1</a>和<a href="http://blog.csdn.net/rumswell/article/details/6544377">页面2</a>，我是两种方法结合在一起最后实现的显示中文。</li>
 </ol>

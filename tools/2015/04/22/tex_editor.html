@@ -65,7 +65,7 @@
   <article class="post-content">
     <p>本贴介绍我在写毕业论文的过程中使用TeXstudio的一些经验。</p>
 
-<p>在一开始的时候我用的是<a href="http://www.xm1math.net/texmaker/">Texmaker</a>,由于包含中文以及多个文件的tex和pdf的跳转有问题，在写毕业论文的过程中我最终转向了<a href="http://texstudio.sourceforge.net/">TeXstudio</a>。经过一段时间的体验，我觉得TeXstudio还是很棒的。TeXstudio是曾经从Texmaker独立出来之后发展起来的一个tex编辑器，很多界面命令都一样，从Texmaker到TeXstudio的迁移是容易的。整体上来说，Texmaker的设计更倾向于对用户友好，不易出错，有点像Apple公司的风格（不过windows下的UI真心一般），TeXstudio适合码农来用（普通使用也是棒棒哒），有各种高级设置，可编程的宏命令功能非常强大。下面对比下两款软件。</p>
+<p>在一开始的时候我用的是<a href="http://www.xm1math.net/texmaker/">Texmaker</a>，由于包含中文以及多个文件的tex和pdf的跳转有问题，在写毕业论文的过程中我最终转向了<a href="http://texstudio.sourceforge.net/">TeXstudio</a>。经过一段时间的体验，我觉得TeXstudio还是很棒的。TeXstudio是曾经从Texmaker独立出来之后发展起来的一个tex编辑器，很多界面命令都一样，从Texmaker到TeXstudio的迁移是容易的。整体上来说，Texmaker的设计更倾向于对用户友好，不易出错，有点像Apple公司的风格（不过windows下的UI真心一般），TeXstudio适合码农来用（普通使用也是棒棒哒），有各种高级设置，可编程的宏命令功能非常强大。下面对比下两款软件。</p>
 
 <h2 id="texmakertexstudio">TeXmaker和TeXstudio对比</h2>
 
@@ -111,7 +111,7 @@
 
 <h3 id="section-1">高级使用</h3>
 
-<p>通过导入我的<a href="http://haccanri.github.io/downloads/files/qing_2015_04_21.txsprofile">配置文件</a>可以拥有文中提及的一些功能。</p>
+<p>通过导入我的<a href="http://haccanri.github.io/downloads/files/qing_2015_04_21.txsprofile">配置文件</a>可以拥有文中提及的一些功能。通过“选项-加载配置文件”来加载。</p>
 
 <h4 id="section-2">自定义补全</h4>
 
@@ -162,8 +162,6 @@
 <span class="nx">editor</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">cmd</span> <span class="o">+</span> <span class="s2">&quot;节&quot;</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;thm&quot;</span><span class="p">)</span> <span class="p">{</span>
 <span class="nx">editor</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;定理&quot;</span> <span class="o">+</span> <span class="nx">cmd</span><span class="p">);</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;def&quot;</span><span class="p">)</span> <span class="p">{</span>
-<span class="nx">editor</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;定义&quot;</span> <span class="o">+</span> <span class="nx">cmd</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;def&quot;</span><span class="p">)</span> <span class="p">{</span>
 <span class="nx">editor</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&quot;定义&quot;</span> <span class="o">+</span> <span class="nx">cmd</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;alg&quot;</span><span class="p">)</span> <span class="p">{</span>
